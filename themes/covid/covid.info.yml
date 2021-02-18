@@ -1,0 +1,19 @@
+name: Covid-19 Theme
+description: "een theme voor WPL3 covid-19 webstie"
+type: theme
+core_version_requirement: ^8 || ^9
+package: custom
+base theme: classy
+logo: logo.svg
+libraries:
+  - covid/global-styling
+  - covid/navbar
+screenshot: screenshot.png
+regions:
+  header: Header
+  main_navigation: "main menu"
+  content: "Content"
+  sidebar_first: "Sidebar first"
+  footer: "Footer"
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'

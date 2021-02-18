@@ -1,0 +1,17 @@
+.toolbar-lining{
+    z-index: 200000 !important;
+    position: relative !important;
+  }
+  
+  
+  
+  
+  .contextual-region{
+    position: static;
+  }
+  
+  
+  /* admin navbar */
+  #toolbar-administration *{
+    z-index: 200000 !important;
+  }

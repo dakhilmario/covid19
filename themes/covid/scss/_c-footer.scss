@@ -1,0 +1,22 @@
+.c-footer{
+    background-color: $color-blauw;
+
+    &__items{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__item{
+        list-style: none;
+        padding: 3rem 0;
+    }
+    &__link{
+        color: $color-white;
+        font-size: 2rem;
+
+        &:hover{
+            text-decoration: none;
+            color: $color-secondary;
+        }
+    }
+}

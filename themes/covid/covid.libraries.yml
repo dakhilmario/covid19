@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+navbar:
+  js:
+      js/navbar.js: {}
+  dependencies:
+    - core/jquery
+
