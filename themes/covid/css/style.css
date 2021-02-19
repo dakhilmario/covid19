@@ -10979,6 +10979,12 @@ main h1 {
   margin-bottom: 4rem;
 }
 
+@media (max-width: 1687.98px) {
+  main h1 {
+    font-size: 5rem;
+  }
+}
+
 @media (max-width: 767.98px) {
   main h1 {
     font-size: 4.6rem;

@@ -2,10 +2,7 @@
     z-index: 200000 !important;
     position: relative !important;
   }
-  
-  
-  
-  
+
   .contextual-region{
     position: static;
   }
@@ -27,6 +24,10 @@
         color: #354b60;
         margin-top: 11.5rem;
         margin-bottom: 4rem;
+
+        @include media-breakpoint-down(xl){
+          font-size: 5rem;
+        }
 
         @include media-breakpoint-down(sm){
           font-size: 4.6rem;
