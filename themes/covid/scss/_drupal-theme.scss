@@ -96,23 +96,24 @@ a:focus,
       ul{
         list-style-type: none;
         margin-bottom: 60px;
+
+        li::before{
+          content: "";
+          width: 25rem;
+          height: 25rem;
+          background-image: url("../img/coronaklein.png");
+          position: absolute;
+          left: -137px;
+          top: -87px;
+        }
+
       }
       
-      li{
-        position: relative;
-        margin-left: 41px;
-        margin-bottom: 8px;
-      }
-      
-      li::before{
-        content: "";
-        width: 25rem;
-        height: 25rem;
-        background-image: url("../img/coronaklein.png");
-        position: absolute;
-        left: -137px;
-        top: -87px;
-      }
+    li{
+      position: relative;
+      margin-left: 41px;
+      margin-bottom: 8px;
+    }
 
       img{
         @include media-breakpoint-down(md){

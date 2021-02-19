@@ -11052,13 +11052,7 @@ main ul {
   margin-bottom: 60px;
 }
 
-main li {
-  position: relative;
-  margin-left: 41px;
-  margin-bottom: 8px;
-}
-
-main li::before {
+main ul li::before {
   content: "";
   width: 25rem;
   height: 25rem;
@@ -11066,6 +11060,12 @@ main li::before {
   position: absolute;
   left: -137px;
   top: -87px;
+}
+
+main li {
+  position: relative;
+  margin-left: 41px;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 991.98px) {
