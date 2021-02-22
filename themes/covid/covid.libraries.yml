@@ -2,6 +2,7 @@ global-styling:
   css:
     theme:
       css/style.css: {}
+      css/all.css: {}
 navbar:
   js:
       js/navbar.js: {}

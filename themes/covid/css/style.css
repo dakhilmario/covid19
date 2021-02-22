@@ -11018,7 +11018,7 @@ main h2 {
 
 @media (max-width: 767.98px) {
   main h2 {
-    font-size: 3.6rem;
+    font-size: 3.4rem;
   }
 }
 
@@ -11030,10 +11030,22 @@ main h3 {
   color: #354b60;
 }
 
+@media (max-width: 767.98px) {
+  main h3 {
+    font-size: 3rem;
+  }
+}
+
 main p {
   line-height: 30px;
   display: block;
   margin-bottom: 2rem;
+}
+
+@media (max-width: 767.98px) {
+  main p {
+    font-size: 1.8rem;
+  }
 }
 
 main a {
@@ -11072,6 +11084,12 @@ main li {
   position: relative;
   margin-left: 41px;
   margin-bottom: 8px;
+}
+
+@media (max-width: 767.98px) {
+  main li {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -11145,6 +11163,25 @@ main small {
   main iframe {
     max-width: 100%;
   }
+}
+
+main .c-top {
+  position: fixed;
+  right: 7%;
+  bottom: 10%;
+}
+
+main .c-top__link {
+  color: #354b60;
+}
+
+main .c-top__link:hover {
+  text-decoration: none;
+  border: none;
+}
+
+main .c-top .fa-chevron-circle-up {
+  font-size: 6rem;
 }
 
 .c-footer {

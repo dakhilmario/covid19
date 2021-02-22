@@ -49,13 +49,17 @@
 
   {% include directory ~  '/partials/header.html.twig' %}
 
-  <main class="container c-body__container" role="main">
+  <main class="container c-body__container" role="main" id="top">
 
-
+    <span class='c-top'>
+    <a href="#top" class="c-top__link">
+    <i class="fa fa-chevron-circle-up"></i>
+    </a>
+    </span>
     <div class="layout-content">
       {{ page.content }}
     </div>{# /.layout-content #}
-
+    
     {% if page.sidebar_first %}
       <aside class="layout-sidebar-first" role="complementary">
         {{ page.sidebar_first }}
