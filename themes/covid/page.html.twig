@@ -49,13 +49,13 @@
 
   {% include directory ~  '/partials/header.html.twig' %}
 
-  <main class="container c-body__container" role="main">
+  <main class="container c-body__container" role="main" id="top">
 
-
+    
     <div class="layout-content">
       {{ page.content }}
     </div>{# /.layout-content #}
-
+    
     {% if page.sidebar_first %}
       <aside class="layout-sidebar-first" role="complementary">
         {{ page.sidebar_first }}
@@ -67,7 +67,9 @@
         {{ page.sidebar_second }}
       </aside>
     {% endif %}
-
+    <span class='c-top js-top-icon'>
+    <i class="fa fa-chevron-up"></i>
+    </span>
   </main>
 
   {% include directory ~  '/partials/footer.html.twig' %}

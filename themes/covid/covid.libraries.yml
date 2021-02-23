@@ -7,4 +7,10 @@ navbar:
       js/navbar.js: {}
   dependencies:
     - core/jquery
+grafieken:
+  js:
+    js/main.js: {}
+top:
+  js:
+    js/top.js: {}
 
