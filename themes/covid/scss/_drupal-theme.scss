@@ -89,6 +89,12 @@
         border-bottom: 1px;
         color: #00B8B1;
         font-size: 20px;
+        transition: all .4s;
+
+        &:hover{
+          color: $color-blauw;
+        }
+
       }
 
       a:hover,
@@ -150,11 +156,11 @@ a:focus,
         @include media-breakpoint-down(xxl){
           font-size: 3rem;
         }
-        @include media-breakpoint-down(md){
-          font-size: 3rem;
-        }
+        
         @include media-breakpoint-down(md){
           margin-left: 3rem;
+          padding-right: 3rem;
+          padding-left: 0;
         }
 
 
@@ -201,18 +207,21 @@ a:focus,
       .c-top{
         position: fixed;
         right: 7%;
-        bottom: 10%;
+        bottom: 11%;
+        background-color: $color-blauw;
+        border-radius: 50%;
+        cursor: pointer;
 
-        &__link{
-          color: $color-blauw;
-          &:hover{
-            text-decoration: none;
-            border: none;
-          }
+        @media screen and (max-width: 390px){
+          
+          display: none;
         }
 
-        .fa-chevron-circle-up{
-          font-size: 6rem;
+        .fa-chevron-up{
+          color: $color-white;
+          font-size: 4rem;
+          padding: 9px 11px 13px;
+
         }
       }
 }

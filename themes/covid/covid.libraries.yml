@@ -2,10 +2,15 @@ global-styling:
   css:
     theme:
       css/style.css: {}
-      css/all.css: {}
 navbar:
   js:
       js/navbar.js: {}
   dependencies:
     - core/jquery
+grafieken:
+  js:
+    js/main.js: {}
+top:
+  js:
+    js/top.js: {}
 

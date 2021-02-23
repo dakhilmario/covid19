@@ -8,6 +8,8 @@ logo: logo.svg
 libraries:
   - covid/global-styling
   - covid/navbar
+  - covid/grafieken
+  - covid/top
 screenshot: screenshot.png
 regions:
   header: Header
