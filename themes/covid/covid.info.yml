@@ -20,3 +20,7 @@ regions:
   page_top: 'Page top'
   page_bottom: 'Page bottom'
   vaccinatie: 'Vaccinatie content'
+  eerste_graf: 'onder de eerste grafiek | actuele info page'
+  kleur_kaart: 'onder de gekleurd kaart | actuele info page'
+  tweede_graf: 'onder de tweede grafiek | actuele info page'
+  derde_graf: onder de derde grafiek | actuele info page'

@@ -10969,7 +10969,7 @@ body {
   z-index: 200000 !important;
 }
 
-main h1 {
+main h1:first-of-type {
   font-weight: 900;
   position: relative;
   padding-left: 3rem;
@@ -10980,18 +10980,18 @@ main h1 {
 }
 
 @media (max-width: 1687.98px) {
-  main h1 {
+  main h1:first-of-type {
     font-size: 5rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  main h1 {
+  main h1:first-of-type {
     font-size: 4.6rem;
   }
 }
 
-main h1::before {
+main h1:first-of-type::before {
   content: "";
   position: absolute;
   left: 0;
@@ -11014,6 +11014,7 @@ main h2 {
   padding-right: 2rem;
   margin-bottom: 4.7rem;
   margin-top: 3rem;
+  font-size: 3rem;
 }
 
 @media (max-width: 767.98px) {
@@ -11185,6 +11186,12 @@ main .c-top .fa-chevron-up {
   color: #fff;
   font-size: 4rem;
   padding: 9px 11px 13px;
+}
+
+@media (max-width: 767.98px) {
+  main .c-top .fa-chevron-up {
+    font-size: 3rem;
+  }
 }
 
 .c-footer {
