@@ -54,10 +54,8 @@
 
   <main class="container c-body__container" role="main" id="top">
 
-    
     <div class="layout-content">
-  
-      {{ page.content }}
+        {{ page.content }}
 
       <div class="c-graph">
 
@@ -80,23 +78,13 @@
           <div id="vacchart"></div>
         </div>
     </div>
+    {{ page.vaccinatie }}
 
     <span class='c-top js-top-icon'>
     <i class="fa fa-chevron-up"></i>
     </span>
     </div>{# /.layout-content #}
-    
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
 
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
 
   </main>
 
