@@ -1742,20 +1742,6 @@ const laadTotalCasesData = function (data, type) {
   let casesTooltip = [];
   let datesTooltip = [];
 
-  if (type == "cases") {
-    tooltipName = "Besmettingen";
-  } else if (type == "deaths") {
-    tooltipName = "Overlijdens";
-  }
-
-  if (screenWidth < 768) {
-    strokeWidth = 2;
-  }
-
-  if (screenWidth < 576) {
-    fontSize = 12;
-  }
-
   for (const key in data) {
     let dateArray = key.split("/");
     const year = "20" + dateArray[2];

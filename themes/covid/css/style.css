@@ -11381,4 +11381,67 @@ h1 .js-countryimg {
   height: 90vh;
 }
 
+.c-kleurkaart {
+  width: 100%;
+  height: 90vh;
+}
+
+@media (max-width: 767.98px) {
+  .c-kleurkaart {
+    height: 50vh;
+  }
+}
+
+.c-kleurkaart .info {
+  padding: 6px 8px;
+  font: 14px/16px "Mulish", sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.c-kleurkaart .info.leaflet-control {
+  font-size: 2rem;
+}
+
+.c-kleurkaart .info.leaflet-control .info-panel {
+  padding-bottom: 0.5rem;
+}
+
+.c-kleurkaart .info.leaflet-control .info-panel--bottom {
+  padding-top: 0.3rem;
+}
+
+.c-kleurkaart .info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+@media (max-width: 767.98px) {
+  .c-kleurkaart .info.legend {
+    font-size: 12px;
+  }
+}
+
+.c-kleurkaart .leaflet-control-zoom {
+  box-shadow: none;
+}
+
+.c-kleurkaart .legend--background {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 767.98px) {
+  .c-kleurkaart .legend--background {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.c-kleurkaart .leaflet-control-attribution a {
+  font-size: 1.2rem;
+}
+
 /*# sourceMappingURL=style.css.map */
