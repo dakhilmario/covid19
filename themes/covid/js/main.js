@@ -40,13 +40,13 @@
   ];
   
   const dagen = [
-    "Zondag",
-    "Maandag",
-    "Dinsdag",
-    "Woensdag",
-    "Donderdag",
-    "Vrijdag",
-    "Zaterdag",
+    "zondag",
+    "maandag",
+    "dinsdag",
+    "woensdag",
+    "donderdag",
+    "vrijdag",
+    "zaterdag",
   ];
   
   const months = [
@@ -341,13 +341,13 @@
     if (newNumber.length > 3) {
       newNumber =
         newNumber.slice(0, newNumber.length - 3) +
-        "," +
+        " " +
         newNumber.slice(newNumber.length - 3, newNumber.length);
   
       if (newNumber.length > 7) {
         newNumber =
           newNumber.slice(0, newNumber.length - 7) +
-          "," +
+          " " +
           newNumber.slice(newNumber.length - 7, newNumber.length);
       }
     }
@@ -1718,14 +1718,6 @@
             return datesTooltip[dataPointIndex];
           },
         },
-        // y: {
-        //   formatter: function (
-        //     value,
-        //     { series, seriesIndex, dataPointIndex, w }
-        //   ) {
-        //     return casesTooltip[dataPointIndex];
-        //   },
-        // },
         y: {
           formatter: function (
             value,
@@ -1743,29 +1735,12 @@
   
     chart.render();
   };
+  
   const laadTotalCasesData = function (data, type) {
     let casesData = [];
     let dateData = [];
     let casesTooltip = [];
     let datesTooltip = [];
-    let tooltipName;
-  
-    if (type == "cases") {
-      tooltipName = "Besmettingen";
-    } else if (type == "deaths") {
-      tooltipName = "Overlijdens";
-    }
-  
-    let fontSize = 14;
-    let strokeWidth = 5;
-  
-    if (screenWidth < 768) {
-      strokeWidth = 2;
-    }
-  
-    if (screenWidth < 576) {
-      fontSize = 12;
-    }
   
     for (const key in data) {
       let dateArray = key.split("/");
@@ -1811,22 +1786,26 @@
       (casesData[casesData.length - 2] - casesData[casesData.length - 3])
     ).toFixed(2);
   
-    if (type == "cases") {
-      document.querySelector(".js-cases").innerHTML = totalCasesToday;
-      document.querySelector(
-        ".js-casestext"
-      ).innerHTML = `Momenteel zijn er ${totalCasesToday} positieve tests afgenomen. Dit is een stijging van ${stijgingProcent}% of ${convertNumber(
-        stijgingNummer
-      )} mensen.`;
-    } else if (type == "deaths") {
-      document.querySelector(".js-deaths").innerHTML = totalCasesToday;
-      document.querySelector(
-        ".js-deathstext"
-      ).innerHTML = `Momenteel zijn er ${totalCasesToday} overlijdens. Dit is een stijging van ${stijgingProcent}% of ${convertNumber(
-        stijgingNummer
-      )} mensen.`;
+    if (
+      document.querySelector(".js-cases") ||
+      document.querySelector(".js-deaths")
+    ) {
+      if (type == "cases") {
+        document.querySelector(".js-cases").innerHTML = totalCasesToday;
+        document.querySelector(
+          ".js-casestext"
+        ).innerHTML = `Momenteel zijn er ${totalCasesToday} positieve tests afgenomen. Dit is een stijging van ${stijgingProcent}% of ${convertNumber(
+          stijgingNummer
+        )} mensen.`;
+      } else if (type == "deaths") {
+        document.querySelector(".js-deaths").innerHTML = totalCasesToday;
+        document.querySelector(
+          ".js-deathstext"
+        ).innerHTML = `Momenteel zijn er ${totalCasesToday} overlijdens. Dit is een stijging van ${stijgingProcent}% of ${convertNumber(
+          stijgingNummer
+        )} mensen.`;
+      }
     }
-  
     for (let cases of casesData) {
       if (cases > 999 && cases < 1000000) {
         casesTooltip.push((cases / 1000).toFixed(0) + "k ");
@@ -1927,12 +1906,14 @@
       numberVac = data.timeline[Object.keys(data.timeline)[0]];
     }
   
-    document.querySelector(".js-vac").innerHTML = convertNumber(numberVac);
-    document.querySelector(
-      ".js-vactext"
-    ).innerHTML = `Momenteel zijn er ${convertNumber(
-      numberVac
-    )} vaccinaties gezet werledwijd. Dit getal zijn mensen die minstens 1 maal zijn vaccineerd,`;
+    if (document.querySelector(".js-vac")) {
+      document.querySelector(".js-vac").innerHTML = convertNumber(numberVac);
+      document.querySelector(
+        ".js-vactext"
+      ).innerHTML = `Momenteel zijn er ${convertNumber(
+        numberVac
+      )} vaccinaties gezet werledwijd. Dit getal zijn mensen die minstens 1 maal zijn vaccineerd,`;
+    }
   };
   
   const getSingleLineVacData = function (days, id) {
@@ -2072,18 +2053,23 @@
       })
       //als de fout opgeworpen is vangen we ze hier op
       .catch(function (error) {
-        if (type == "cases") {
-          document.querySelector(
-            ".js-gevallen"
-          ).innerHTML = `<p>Geen besmettingsgegevens gevonden voor ${covidToNL(
-            country
-          )}</p>`;
-        } else if (type == "deaths") {
-          document.querySelector(
-            ".js-overlijdens"
-          ).innerHTML = `<p>Geen overlijdingsgegevens gevonden voor ${covidToNL(
-            country
-          )}</p>`;
+        if (
+          document.querySelector(".js-gevallen") ||
+          document.querySelector(".js-overlijdens")
+        ) {
+          if (type == "cases") {
+            document.querySelector(
+              ".js-gevallen"
+            ).innerHTML = `<p>Geen besmettingsgegevens gevonden voor ${covidToNL(
+              country
+            )}</p>`;
+          } else if (type == "deaths") {
+            document.querySelector(
+              ".js-overlijdens"
+            ).innerHTML = `<p>Geen overlijdingsgegevens gevonden voor ${covidToNL(
+              country
+            )}</p>`;
+          }
         }
         // console.error(`fout bij het verwerken van de jsonfile ${error}`);
       });
@@ -2239,6 +2225,7 @@
         console.error(`fout bij het verwerken van de jsonfile ${error}`);
       });
   };
+  
   const getWorldData = function () {
     //ophalen van de externe json file
   
@@ -2453,6 +2440,18 @@
     } else {
       getWorldData();
       getCountriesJson2();
+  
+      let today = new Date();
+      if (document.querySelector(".js-today")) {
+        document.querySelector(".js-today").innerHTML =
+          dagen[today.getDay()] +
+          " " +
+          today.getDate() +
+          " " +
+          months[today.getMonth()] +
+          " " +
+          today.getFullYear();
+      }
     }
   };
   
@@ -2461,6 +2460,956 @@
   
   /***/ }),
   /* 3 */
+  /***/ (() => {
+  
+  "use strict";
+  
+  
+  let covidData = [];
+  let countries = [];
+  let geojson;
+  var info = L.control();
+  
+  let prevCountry, screenWidth;
+  
+  info.onAdd = function (map) {
+    this._div = L.DomUtil.create("div", "info"); // create a div with a class "info"
+    this.update();
+    return this._div;
+  };
+  
+  info.update = function (props) {
+    if (props) {
+      let cases = "onbekend";
+      const covidName = GeoToCovid(props.name);
+      if (covidName) {
+        for (const country of covidData) {
+          if (country.country == covidName) {
+            cases = country.activePerOneMillion;
+          }
+        }
+  
+        this._div.innerHTML =
+          "<div class='info-panel'>Covid besmettingen</div>" +
+          (props
+            ? "<b>" +
+              GeoToNL(props.name) +
+              "</b><br /><div class='info-panel--bottom'>" +
+              convertNumber(cases) +
+              " per miljoen inwoners</sup></div>"
+            : "Hover over een land");
+      } else {
+        this._div.innerHTML =
+          "<div class='info-panel'>Covid besmettingen</div>" +
+          (props
+            ? "<b>" +
+              GeoToNL(props.name) +
+              "</b><br />" +
+              "<div class='info-panel--bottom'>Geen informatie beschikbaar</div>"
+            : "Hover over een land");
+      }
+    } else {
+      if (screenWidth < 768) {
+        this._div.innerHTML =
+          "<div class='info-panel'>Covid besmettingen</div>" + "Klik op een land";
+      } else {
+        this._div.innerHTML =
+          "<div class='info-panel'>Covid besmettingen</div>" +
+          "Hover over een land";
+      }
+    }
+  };
+  
+  const GeoToCovid = function (nameGeo) {
+    let nameCovid;
+    for (const key in countries) {
+      if (nameGeo == countries[key].geojson.name) {
+        nameCovid = countries[key].covid.name;
+      }
+    }
+    return nameCovid;
+  };
+  
+  const convertNumber = function (oldNumber) {
+    let number = parseFloat(oldNumber).toFixed(2);
+    const decimals = String(number).slice(
+      String(number).length - 3,
+      String(number).length
+    );
+    let newNumber = String(number).slice(0, String(number).length - 3);
+  
+    if (newNumber.length > 3) {
+      newNumber =
+        newNumber.slice(0, newNumber.length - 3) +
+        " " +
+        newNumber.slice(newNumber.length - 3, newNumber.length);
+  
+      if (newNumber.length > 7) {
+        newNumber =
+          newNumber.slice(0, newNumber.length - 7) +
+          " " +
+          newNumber.slice(newNumber.length - 7, newNumber.length);
+      }
+    }
+    return newNumber + decimals;
+  };
+  
+  function highlightFeature(e) {
+    var layer = e.target;
+  
+    layer.setStyle({
+      weight: 2,
+      color: "white",
+      dashArray: "",
+      fillOpacity: 1,
+      opacity: 1,
+    });
+  
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+      layer.bringToFront();
+    }
+  
+    info.update(layer.feature.properties);
+  }
+  
+  function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+  
+    info.update();
+  }
+  
+  const GeoToNL = function (nameGeo) {
+    let nameCovid;
+  
+    for (const key in countries) {
+      if (nameGeo == countries[key].geojson.name) {
+        nameCovid = countries[key].translations.NL;
+      }
+    }
+    return nameCovid;
+  };
+  
+  function getColor(d) {
+    return d > 999999
+      ? "white"
+      : d > 15000
+      ? "#b40000"
+      : d > 7500
+      ? "#c03c0e"
+      : d > 1000
+      ? "#cc5d20"
+      : d > 250
+      ? "#d67a32"
+      : d > 100
+      ? "#e09645"
+      : d > 50
+      ? "#e8b15a"
+      : d > 20
+      ? "#f0cc73"
+      : d > 1
+      ? "#f7e690"
+      : "#ffffc1";
+  }
+  
+  function style(feature) {
+    let covidList = [];
+    for (const key in covidData) {
+      covidList.push(covidData[key].country);
+    }
+  
+    let countryData;
+    let covidName = GeoToCovid(feature.properties.name);
+  
+    if (covidName && covidList.includes(covidName)) {
+      for (const key in covidData) {
+        if (covidData[key].country == covidName) {
+          countryData = covidData[key];
+        }
+      }
+  
+      return {
+        fillColor: getColor(countryData.activePerOneMillion),
+        weight: 1,
+        opacity: 0.5,
+        color: "white",
+        fillOpacity: 0.8,
+      };
+    } else {
+      return {
+        fillColor: getColor(1000000),
+        weight: 1,
+        opacity: 0.5,
+        color: "white",
+        fillOpacity: 0.7,
+      };
+    }
+  }
+  
+  const onEachFeature = function onEachFeature(feature, layer) {
+    layer.addEventListener("mouseover", function (e) {
+      highlightFeature(e);
+    });
+    layer.addEventListener("mouseout", function (e) {
+      resetHighlight(e);
+    });
+    layer.addEventListener("click", function (e) {
+      if (prevCountry) {
+        resetHighlight(prevCountry);
+      }
+      prevCountry = e;
+      highlightFeature(e);
+    });
+  };
+  
+  const setMapWithGeoJSON = function (dataGeoJSON) {
+    let map;
+  
+    if (screenWidth < 768) {
+      map = L.map("mymap", {
+        minZoom: 1,
+        zoomControl: false,
+      }).setView([30, 0], 1);
+    } else {
+      map = L.map("mymap", {
+        minZoom: 2,
+        zoomControl: false,
+      }).setView([30, 0], 2);
+    }
+  
+    L.control
+      .zoom({
+        position: "bottomright",
+      })
+      .addTo(map);
+  
+    geojson = L.geoJson(dataGeoJSON, {
+      style: style,
+      onEachFeature,
+      onEachFeature,
+    }).addTo(map);
+  
+    var legend = L.control({ position: "bottomleft" });
+  
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create("div", "info legend"),
+        grades = [0, 1, 20, 50, 100, 250, 1000, 7500, 15000],
+        labels = [];
+  
+      div.innerHTML += '<div style="background:rgba(white, 0.7);">';
+  
+      // loop through our density intervals and generate a label with a colored square for each interval
+      for (var i = 0; i < grades.length; i++) {
+        if (i == 0) {
+          div.innerHTML +=
+            '<div style="display:flex; text-allign:center;"><div class="legend--background" style=" background-color:' +
+            getColor(grades[i] + 1) +
+            '"></div> <div style="padding:0.2rem 0 0 1rem">' +
+            0 +
+            (grades[i + 1]
+              ? "&ndash;" + grades[i + 1] + "<br></div></div>"
+              : "+");
+        } else {
+          div.innerHTML +=
+            '<div style="display:flex; text-allign:center;"><div style="width:20px; height:20px; background-color:' +
+            getColor(grades[i] + 1) +
+            '"></div> <div style="padding:0.2rem 0 0 1rem">' +
+            (grades[i] + 1) +
+            (grades[i + 1]
+              ? "&ndash;" + grades[i + 1] + "<br></div></div>"
+              : "+");
+        }
+      }
+  
+      div.innerHTML +=
+        "<div style='display:flex; margin-top:1rem; text-allign:center;'><div class='legend--background' style='border:solid 1px rgba(0,0,0,0.4); background-color:white'></div> <div style='padding:0.2rem 0 0 1rem'> Geen informatie<br></div></div></div>";
+      return div;
+    };
+    legend.addTo(map);
+  
+    info.addTo(map);
+  
+    document.querySelector("#mymap").style.backgroundColor = "#a7c8eb";
+  };
+  
+  const getDataGeoJSON = function () {
+    //Path naar geoJSON
+    const pathToGeoJSON = "../covid19/themes/covid/data/geojson.json";
+  
+    //Ophalen van data van geoJSON
+    fetch(pathToGeoJSON)
+      .then((response) => response.json())
+      .then((data) => setMapWithGeoJSON(data));
+  };
+  
+  const getDataCovidJSON = function () {
+    //Path naar covidJSON
+    const pathToCovidJSON = "https://disease.sh/v3/covid-19/countries";
+  
+    //Ophalen van data van geoJSON
+    fetch(pathToCovidJSON)
+      .then((response) => response.json())
+      .then((data) => {
+        covidData = data;
+        getDataCountriesJSON();
+      });
+  };
+  
+  const getDataCountriesJSON = function () {
+    //Path naar covidJSON
+    const pathToCountriesJSON = "https://api.jsonbin.io/b/60338a17f1be644b0a62f473";
+  
+    //Ophalen van data van geoJSON
+    fetch(pathToCountriesJSON)
+      .then((response) => response.json())
+      .then((data) => {
+        countries = data;
+        getDataGeoJSON();
+      });
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    window.onresize = window.onload = function () {
+      screenWidth = this.innerWidth;
+    };
+  
+    //Ophalen van de geoJSON
+  
+    getDataCovidJSON();
+  });
+  
+  
+  /***/ }),
+  /* 4 */
+  /***/ (() => {
+  
+  "use strict";
+  
+  
+  let dataCovid = [];
+  let dataCountries = [];
+  let geoData = [];
+  let newGeoData = [];
+  
+  let map;
+  let popup;
+  
+  let link = "http://localhost/corona-website/covid19/detail#";
+  
+  const convertNumber = function (oldNumber) {
+    let newNumber = String(oldNumber);
+  
+    if (newNumber.length > 3) {
+      newNumber =
+        newNumber.slice(0, newNumber.length - 3) +
+        "." +
+        newNumber.slice(newNumber.length - 3, newNumber.length);
+  
+      if (newNumber.length > 7) {
+        newNumber =
+          newNumber.slice(0, newNumber.length - 7) +
+          "." +
+          newNumber.slice(newNumber.length - 7, newNumber.length);
+      }
+    }
+    return newNumber;
+  };
+  
+  const searchForCountryObject = function (searchItem, type) {
+    if (type == "geojson") {
+      for (const country of dataCountries) {
+        if (country.geojson.name == searchItem) {
+          return country;
+        }
+      }
+    } else if (type == "countryNL") {
+      for (const country of dataCountries) {
+        if (country.translations.NL == searchItem) {
+          return country;
+        }
+      }
+    }
+  };
+  
+  const setPopupContent = function (objectCountry, covidDataCountry) {
+    if (covidDataCountry == undefined) {
+      //Geen coviddata gevonden
+      return `<div class="c-kaart__popup"><div class="c-kaart__popup__cijfers"><p>Geen data gevonden voor ${objectCountry.translations.NL}</p></div></div>`;
+    } else {
+      //Wel coviddata gevonden
+      return `<div class="c-kaart__popup"><p class="c-kaart__popup__land"><img src="${
+        covidDataCountry.countryInfo.flag
+      } "alt="" class="c-kaart__popup__vlag"/>${
+        objectCountry.translations.NL
+      }</p><div class="c-kaart__popup__cijfers"><div><p class="c-kaart__popup__title">Aantal besmettingen:</p><p>${convertNumber(
+        covidDataCountry.todayCases
+      )}</p></div><div><p class="c-kaart__popup__title">Aantal doden:</p><p>${convertNumber(
+        covidDataCountry.todayDeaths
+      )}</p></div><div><p class="c-kaart__popup__title">Aantal herstelde gevallen:</p><p>${convertNumber(
+        covidDataCountry.todayRecovered
+      )}</p></div></div><div class="c-kaart__popup__link"><a href="${
+        link + objectCountry.url
+      }">Bekijk alle cijfers</a></div></div>`;
+    }
+  };
+  
+  const showPopup = function (latlng, objectCountry, covidDataCountry) {
+    if (window.innerWidth > 575) {
+      //Popup op kaart
+      let popupOptions = {
+        maxWidth: 450,
+      };
+  
+      let popup = L.popup(popupOptions)
+        .setLatLng(latlng)
+        .setContent(setPopupContent(objectCountry, covidDataCountry))
+        .openOn(map);
+    } else {
+      //Popup onder kaart
+      document.querySelector(".js-kaart-popup").style.display = "block";
+      document.querySelector(".js-kaart-popup").innerHTML = setPopupContent(
+        objectCountry,
+        covidDataCountry
+      );
+    }
+  };
+  
+  const goToCountry = function (dataGeoapify, objectCountry) {
+    //Ophalen van de covid data voor dat land
+    let covidDataCountry;
+  
+    for (const key in dataCovid) {
+      if (dataCovid[key].country == objectCountry.covid.name) {
+        covidDataCountry = dataCovid[key];
+      }
+    }
+  
+    let latlng = {
+      lat: dataGeoapify.features[0].properties.lat,
+      lng: dataGeoapify.features[0].properties.lon,
+    };
+  
+    showPopup(latlng, objectCountry, covidDataCountry);
+  };
+  
+  const clickOnCountry = function (e, feature) {
+    //GeoJSON naam van land waar op geklikt werd.
+    const nameCountryGeoJSON = feature.properties.name;
+  
+    //Ophalen van het object uit de lijst van de connectie
+    const objectCountry = searchForCountryObject(nameCountryGeoJSON, "geojson");
+  
+    //Ophalen van de covid data voor dat land
+    let covidDataCountry;
+  
+    for (const key in dataCovid) {
+      if (dataCovid[key].country == objectCountry.covid.name) {
+        covidDataCountry = dataCovid[key];
+      }
+    }
+  
+    let latlng = e.latlng;
+  
+    showPopup(latlng, objectCountry, covidDataCountry);
+  };
+  
+  const mouseOutCountry = function (e, feature) {
+    //Effect weghalen bij de mouseover van een land
+  
+    if (!newGeoData.includes(feature)) {
+      e.target.setStyle({
+        fillColor: "white",
+        color: "black",
+        weight: 1,
+        opacity: 0.05,
+        fillOpacity: 0.8,
+      });
+    } else {
+      e.target.setStyle({
+        fillColor: "#354B60",
+        color: "black",
+        weight: 1,
+        opacity: 0.1,
+        fillOpacity: 0.6,
+      });
+    }
+  };
+  
+  const mouseOverCountry = function (e) {
+    //Kleur geven bij hover
+    e.target.setStyle({
+      fillColor: "#354B60",
+      color: "black",
+      weight: 1,
+      opacity: 0.1,
+      fillOpacity: 0.5,
+    });
+  };
+  
+  const onEachFeature = function (feature, layer) {
+    //Effect toevoegen bij de mouseover van een land
+    layer.addEventListener("mouseover", function (e) {
+      mouseOverCountry(e);
+    });
+  
+    //Het effect van de mouseout weghalen
+    layer.addEventListener("mouseout", function (e, feature) {
+      mouseOutCountry(e, layer.feature);
+    });
+  
+    //Effect toevoegen wanneer je op een land klikt of selecteert
+    layer.addEventListener("click", function (e) {
+      clickOnCountry(e, feature);
+    });
+  };
+  
+  const setMapWithGeoJSON = function (dataGeoJSON) {
+    //Creëren van de kaart
+    map = L.map("map", {
+      minZoom: 2,
+      zoomControl: false,
+    }).setView([30, 0], 2);
+  
+    //Controls rechtsonderaan zetten
+    L.control.zoom({ position: "bottomright" }).addTo(map);
+  
+    //Maken van een stylingsobject
+  
+    //GeoJSON toevoegen aan de kaart met bijhorende style
+    L.geoJSON(dataGeoJSON, {
+      style: style,
+      onEachFeature: onEachFeature,
+    }).addTo(map);
+  
+    //Kaart een blauwe achtergrondkleur geven
+    document.querySelector("#map").style.backgroundColor = "#a7c8eb";
+  };
+  
+  const verwerkDataCountriesConnection = function (data) {
+    dataCountries = data;
+  };
+  
+  const verwerkDataCovid = function (data) {
+    dataCovid = data;
+  };
+  
+  const getDataGeoapify = function (country) {
+    const API_key = "ae0d2fc63ecd4c8a9f24aad5ea26a570";
+  
+    //Pad naar JSON
+    const path = `https://api.geoapify.com/v1/geocode/search?text=${country.geojson.name}&limit=1&apiKey=${API_key}`;
+  
+    //Fetchen van data
+    fetch(path)
+      .then((response) => response.json())
+      .then((data) => goToCountry(data, country));
+  };
+  
+  const getDataCountriesConnection = function () {
+    //     //Pad naar JSON
+    const path = "https://api.jsonbin.io/b/60338a17f1be644b0a62f473";
+  
+    //Fetchen van data
+    fetch(path)
+      .then((response) => response.json())
+      .then((data) => verwerkDataCountriesConnection(data));
+  };
+  
+  const getDataGeoJSON = function () {
+    //Pad naar JSON
+    const path = "../covid19/themes/covid/data/geojson.json";
+  
+    //Fetchen van data
+    fetch(path)
+      .then((response) => response.json())
+      .then((data) => {
+        geoData = data;
+        setMapWithGeoJSON(data);
+      });
+  };
+  
+  const getDataCovid = function () {
+    //Pad naar JSON
+    const path = "https://disease.sh/v3/covid-19/countries?yesterday=true";
+  
+    //Fetchen van data
+    fetch(path)
+      .then((response) => response.json())
+      .then((data) => {
+        verwerkDataCovid(data);
+      });
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    //Ophalen van de Covid-19 data
+    getDataCovid();
+  
+    //Ophalen van de JSON die de connectie maakt tussen alles
+    getDataCountriesConnection();
+  
+    //Ophalen van de geoJSON
+    getDataGeoJSON();
+  
+    //Searchbar
+    const html_searchbar = document.querySelector(".js-search-zoek-op-land");
+    html_searchbar.addEventListener("keyup", function (e) {
+      let searchKeyword = e.target.value.toLowerCase();
+  
+      let filteredResults = dataCountries.filter((country) =>
+        String(country.translations.NL)
+          .toLocaleLowerCase()
+          .startsWith(searchKeyword)
+      );
+  
+      const html_results = document.querySelector(".js-search-results");
+      html_results.innerHTML = "";
+  
+      if (searchKeyword != "") {
+        if (filteredResults.length != 0) {
+          if (filteredResults.length < 5) {
+            for (const result of filteredResults) {
+              html_results.innerHTML += `<a class="c-filter__search-result-item">${result.translations.NL}</a>`;
+            }
+          } else {
+            for (let i = 0; i < 5; i++) {
+              html_results.innerHTML += `<a class="c-filter__search-result-item">${filteredResults[i].translations.NL}</a>`;
+            }
+          }
+        } else if (searchKeyword.length < 2) {
+          for (const result of filteredResults) {
+            html_results.innerHTML += `<a class="c-filter__search-result-item">${result.translations.NL}</a>`;
+          }
+        } else {
+          html_results.innerHTML = "Oeps, geen overeenkomsten gevonden.";
+        }
+      }
+  
+      let html_resultLinks = document.querySelectorAll(
+        ".c-filter__search-result-item"
+      );
+  
+      for (const link of html_resultLinks) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+  
+          let countryNL = link.innerHTML;
+          const objectCountry = searchForCountryObject(countryNL, "countryNL");
+  
+          getDataGeoapify(objectCountry);
+        });
+      }
+    });
+  
+    //Filter klik
+    document
+      .querySelector(".c-filter__header")
+      .addEventListener("click", function () {
+        if (
+          document.querySelector(".c-filter__form-items").style.display == "none"
+        ) {
+          document.querySelector(".c-filter__form-items").style.display = "block";
+        } else {
+          document.querySelector(".c-filter__form-items").style.display = "none";
+        }
+      });
+  
+    document.querySelector(".js-submit").addEventListener("click", function (e) {
+      e.preventDefault();
+      newGeoData = [];
+      document.querySelector(".c-filter__form-items").style.display = "none";
+      const checkboxCases = document.querySelector("#checkboxAantalBesmettingen");
+      const checkboxDeaths = document.querySelector("#checkboxAantalDoden");
+      const minCases = parseInt(
+        document.querySelector(".js-range-cases-min").value
+      );
+      const maxCases = parseInt(
+        document.querySelector(".js-range-cases-max").value
+      );
+      const minDeaths = parseInt(
+        document.querySelector(".js-range-deaths-min").value
+      );
+      const maxDeaths = parseInt(
+        document.querySelector(".js-range-deaths-max").value
+      );
+  
+      let countryList = [];
+  
+      if (checkboxCases.checked && !checkboxDeaths.checked) {
+        for (const country of dataCovid) {
+          if (country.todayCases <= maxCases && country.todayCases >= minCases) {
+            countryList.push(country);
+          }
+        }
+        for (const geoCountry of geoData.features) {
+          for (const country of countryList) {
+            if (searchForCountryObject(geoCountry.properties.name, "geojson")) {
+              if (
+                searchForCountryObject(geoCountry.properties.name, "geojson")
+                  .covid.name == country.country
+              ) {
+                newGeoData.push(geoCountry);
+              }
+            }
+          }
+        }
+        map.remove();
+        setMapWithGeoJSON(geoData);
+      } else if (checkboxDeaths.checked && !checkboxCases.checked) {
+        for (const country of dataCovid) {
+          if (
+            country.todayDeaths <= maxDeaths &&
+            country.todayDeaths >= minDeaths
+          ) {
+            countryList.push(country);
+          }
+        }
+        for (const geoCountry of geoData.features) {
+          for (const country of countryList) {
+            if (searchForCountryObject(geoCountry.properties.name, "geojson")) {
+              if (
+                searchForCountryObject(geoCountry.properties.name, "geojson")
+                  .covid.name == country.country
+              ) {
+                newGeoData.push(geoCountry);
+              }
+            }
+          }
+        }
+        map.remove();
+        setMapWithGeoJSON(geoData);
+      } else if (checkboxDeaths.checked && checkboxCases.checked) {
+        for (const country of dataCovid) {
+          if (
+            country.todayCases <= maxCases &&
+            country.todayCases >= minCases &&
+            country.todayDeaths <= maxDeaths &&
+            country.todayDeaths >= minDeaths
+          ) {
+            countryList.push(country);
+          }
+        }
+  
+        for (const geoCountry of geoData.features) {
+          for (const country of countryList) {
+            if (searchForCountryObject(geoCountry.properties.name, "geojson")) {
+              if (
+                searchForCountryObject(geoCountry.properties.name, "geojson")
+                  .covid.name == country.country
+              ) {
+                newGeoData.push(geoCountry);
+              }
+            }
+          }
+        }
+        map.remove();
+        setMapWithGeoJSON(geoData);
+      } else if (!checkboxDeaths.checked && !checkboxCases.checked) {
+        map.remove();
+        setMapWithGeoJSON(geoData);
+      }
+    });
+  });
+  
+  function style(feature) {
+    let styleGeoData = {};
+  
+    if (newGeoData.includes(feature)) {
+      styleGeoData = {
+        fillColor: "#354B60",
+        color: "black",
+        weight: 1,
+        opacity: 0.1,
+        fillOpacity: 0.6,
+      };
+    } else {
+      styleGeoData = {
+        fillColor: "white",
+        color: "black",
+        weight: 1,
+        opacity: 0.1,
+        fillOpacity: 0.8,
+      };
+    }
+  
+    return styleGeoData;
+  }
+  
+  
+  /***/ }),
+  /* 5 */
+  /***/ (() => {
+  
+  "use strict";
+  
+  
+  var inputLeftCases, inputRightCases, thumbLeftCases, thumbRightCases, rangeCases;
+  
+  function setLeftValueCases() {
+    var _this = inputLeftCases,
+      min = parseInt(_this.min),
+      max = parseInt(_this.max);
+  
+    _this.value = Math.min(parseInt(_this.value), parseInt(inputRightCases.value) - 1);
+  
+    var percent = ((_this.value - min) / (max - min)) * 100;
+  
+    thumbLeftCases.style.left = percent + "%";
+    rangeCases.style.left = percent - 5 + "%";
+  
+    thumbLeftCases.setAttribute("data-left", parseInt(_this.value));
+  }
+  
+  function setRightValueCases() {
+    var _this = inputRightCases,
+      min = parseInt(_this.min),
+      max = parseInt(_this.max);
+  
+    _this.value = Math.max(parseInt(_this.value), parseInt(inputLeftCases.value) + 1);
+  
+    var percent = ((_this.value - min) / (max - min)) * 100;
+  
+    thumbRightCases.style.right = 100 - percent + "%";
+    rangeCases.style.right = 95 - percent + "%";
+  
+    thumbRightCases.setAttribute("data-right", parseInt(_this.value));
+  }
+  
+  const eventListenersCases = function () {
+    inputLeftCases.addEventListener("input", setLeftValueCases);
+    inputRightCases.addEventListener("input", setRightValueCases);
+  
+    inputLeftCases.addEventListener("mouseover", function () {
+      thumbLeftCases.classList.add("hover");
+    });
+    inputLeftCases.addEventListener("mouseout", function () {
+      thumbLeftCases.classList.remove("hover");
+    });
+    inputLeftCases.addEventListener("mousedown", function () {
+      thumbLeftCases.classList.add("active");
+    });
+    inputLeftCases.addEventListener("mouseup", function () {
+      thumbLeftCases.classList.remove("active");
+    });
+  
+    inputRightCases.addEventListener("mouseover", function () {
+      thumbRightCases.classList.add("hover");
+    });
+    inputRightCases.addEventListener("mouseout", function () {
+      thumbRightCases.classList.remove("hover");
+    });
+    inputRightCases.addEventListener("mousedown", function () {
+      thumbRightCases.classList.add("active");
+    });
+    inputRightCases.addEventListener("mouseup", function () {
+      thumbRightCases.classList.remove("active");
+    });
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    inputLeftCases = document.getElementById("cases-left");
+    inputRightCases = document.getElementById("cases-right");
+  
+    thumbLeftCases = document.querySelector(".js-range-cases-left");
+    thumbRightCases = document.querySelector(".js-range-cases-right");
+    rangeCases = document.querySelector(
+      ".js-range-cases-range"
+    );
+  
+    setLeftValueCases();
+    setRightValueCases();
+  
+    eventListenersCases();
+  });
+  
+  
+  /***/ }),
+  /* 6 */
+  /***/ (() => {
+  
+  "use strict";
+  
+  
+  var inputLeftDeaths, inputRightDeaths, thumbLeftDeaths, thumbRightDeaths, rangeDeaths;
+  
+  function setLeftValueDeaths() {
+    var _this = inputLeftDeaths,
+      min = parseInt(_this.min),
+      max = parseInt(_this.max);
+  
+    _this.value = Math.min(parseInt(_this.value), parseInt(inputRightDeaths.value) - 1);
+  
+    var percent = ((_this.value - min) / (max - min)) * 100;
+  
+    thumbLeftDeaths.style.left = percent + "%";
+    rangeDeaths.style.left = percent - 5 + "%";
+  
+    thumbLeftDeaths.setAttribute("data-left", parseInt(_this.value));
+  }
+  
+  function setRightValueDeaths() {
+    var _this = inputRightDeaths,
+      min = parseInt(_this.min),
+      max = parseInt(_this.max);
+  
+    _this.value = Math.max(parseInt(_this.value), parseInt(inputLeftDeaths.value) + 1);
+  
+    var percent = ((_this.value - min) / (max - min)) * 100;
+  
+    thumbRightDeaths.style.right = 100 - percent + "%";
+    rangeDeaths.style.right = 95 - percent + "%";
+  
+    thumbRightDeaths.setAttribute("data-right", parseInt(_this.value));
+  }
+  
+  const eventListenersDeaths = function () {
+    inputLeftDeaths.addEventListener("input", setLeftValueDeaths);
+    inputRightDeaths.addEventListener("input", setRightValueDeaths);
+  
+    inputLeftDeaths.addEventListener("mouseover", function () {
+      thumbLeftDeaths.classList.add("hover");
+    });
+    inputLeftDeaths.addEventListener("mouseout", function () {
+      thumbLeftDeaths.classList.remove("hover");
+    });
+    inputLeftDeaths.addEventListener("mousedown", function () {
+      thumbLeftDeaths.classList.add("active");
+    });
+    inputLeftDeaths.addEventListener("mouseup", function () {
+      thumbLeftDeaths.classList.remove("active");
+    });
+  
+    inputRightDeaths.addEventListener("mouseover", function () {
+      thumbRightDeaths.classList.add("hover");
+    });
+    inputRightDeaths.addEventListener("mouseout", function () {
+      thumbRightDeaths.classList.remove("hover");
+    });
+    inputRightDeaths.addEventListener("mousedown", function () {
+      thumbRightDeaths.classList.add("active");
+    });
+    inputRightDeaths.addEventListener("mouseup", function () {
+      thumbRightDeaths.classList.remove("active");
+    });
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    inputLeftDeaths = document.getElementById("deaths-left");
+    inputRightDeaths = document.getElementById("deaths-right");
+  
+    thumbLeftDeaths = document.querySelector(".js-range-deaths-left");
+    thumbRightDeaths = document.querySelector(".js-range-deaths-right");
+    rangeDeaths = document.querySelector(
+      ".js-range-deaths-range"
+    );
+  
+    setLeftValueDeaths();
+    setRightValueDeaths();
+  
+    eventListenersDeaths();
+  });
+  
+  
+  /***/ }),
+  /* 7 */
   /***/ (function(module, exports, __webpack_require__) {
   
   var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -33262,11 +34211,22 @@
   /* harmony import */ var _hamburger_menu__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_hamburger_menu__WEBPACK_IMPORTED_MODULE_0__);
   /* harmony import */ var _grafieken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
   /* harmony import */ var _grafieken__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_grafieken__WEBPACK_IMPORTED_MODULE_1__);
-  /* harmony import */ var apexcharts_dist_apexcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
-  /* harmony import */ var apexcharts_dist_apexcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(apexcharts_dist_apexcharts__WEBPACK_IMPORTED_MODULE_2__);
+  /* harmony import */ var _kleurkaart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
+  /* harmony import */ var _kleurkaart__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_kleurkaart__WEBPACK_IMPORTED_MODULE_2__);
+  /* harmony import */ var _kaart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
+  /* harmony import */ var _kaart__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_kaart__WEBPACK_IMPORTED_MODULE_3__);
+  /* harmony import */ var _range__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5);
+  /* harmony import */ var _range__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_range__WEBPACK_IMPORTED_MODULE_4__);
+  /* harmony import */ var _range2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6);
+  /* harmony import */ var _range2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_range2__WEBPACK_IMPORTED_MODULE_5__);
+  /* harmony import */ var apexcharts_dist_apexcharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7);
+  /* harmony import */ var apexcharts_dist_apexcharts__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(apexcharts_dist_apexcharts__WEBPACK_IMPORTED_MODULE_6__);
   
   
-  // import "./kaart";
+  
+  
+  
+  
   
   
   })();

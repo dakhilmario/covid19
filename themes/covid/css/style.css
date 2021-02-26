@@ -10969,7 +10969,7 @@ body {
   z-index: 200000 !important;
 }
 
-main h1 {
+main h1:first-of-type {
   font-weight: 900;
   position: relative;
   padding-left: 3rem;
@@ -10980,18 +10980,18 @@ main h1 {
 }
 
 @media (max-width: 1687.98px) {
-  main h1 {
+  main h1:first-of-type {
     font-size: 5rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  main h1 {
+  main h1:first-of-type {
     font-size: 4.6rem;
   }
 }
 
-main h1::before {
+main h1:first-of-type::before {
   content: "";
   position: absolute;
   left: 0;
@@ -11014,6 +11014,7 @@ main h2 {
   padding-right: 2rem;
   margin-bottom: 4.7rem;
   margin-top: 3rem;
+  font-size: 3rem;
 }
 
 @media (max-width: 767.98px) {
@@ -11185,6 +11186,12 @@ main .c-top .fa-chevron-up {
   color: #fff;
   font-size: 4rem;
   padding: 9px 11px 13px;
+}
+
+@media (max-width: 767.98px) {
+  main .c-top .fa-chevron-up {
+    font-size: 3rem;
+  }
 }
 
 .c-footer {
@@ -11370,8 +11377,508 @@ h1 .js-countryimg {
 }
 
 .c-kaart {
+  position: relative;
+}
+
+.c-kaart__kaart {
   width: 100%;
   height: 90vh;
+}
+
+@media (max-width: 575.98px) {
+  .c-kaart__kaart {
+    height: calc(100vh - 35rem);
+  }
+}
+
+.c-kaart__popup {
+  width: 35rem;
+  padding: 2rem;
+  color: #354b60;
+}
+
+@media (max-width: 767.98px) {
+  .c-kaart__popup {
+    width: 100%;
+  }
+}
+
+.c-kaart__popup--small-screen {
+  margin: 2rem 0;
+  width: 100%;
+  box-shadow: 0px 0px 20px rgba(53, 75, 96, 0.2);
+  border-radius: 1rem;
+  display: none;
+}
+
+.c-kaart__popup__vlag {
+  display: inline-block;
+  width: 4rem;
+  margin-right: 2rem;
+}
+
+.c-kaart__popup__land {
+  font-size: 2.4rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+}
+
+.c-kaart__popup__land p {
+  margin-top: 0;
+}
+
+.c-kaart__popup__cijfers {
+  margin: 2rem 0;
+}
+
+.c-kaart__popup__cijfers div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
+.c-kaart__popup__cijfers div p {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.c-kaart__popup__title {
+  font-weight: bold;
+}
+
+.c-kaart__popup__link {
+  text-align: right;
+}
+
+.c-kaart__popup__link a {
+  font-size: 1.6rem;
+  display: inline-block;
+  font-weight: bold;
+  color: #354b60;
+  position: relative;
+  margin-right: 4rem;
+  text-decoration: none;
+}
+
+.c-kaart__popup__link a:hover {
+  text-decoration: none;
+  color: #00B8B1;
+  border: none;
+}
+
+.c-kaart__popup__link a::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1rem;
+  background-image: url(../img/pijl-blauw.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  right: -4rem;
+  transform: translateY(-50%);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 3rem;
+  padding: 2rem 2rem 0 0;
+  border: none;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  font: 3rem Tahoma, Verdana, sans-serif;
+  color: #354b60;
+  text-decoration: none;
+  font-weight: bold;
+  background: transparent;
+  transition: color 0.3s ease;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #00B8B1;
+}
+
+.leaflet-container .leaflet-popup-content p {
+  margin: 0;
+}
+
+.leaflet-container .leaflet-control-zoom {
+  border: none;
+}
+
+.leaflet-container .leaflet-control-zoom a {
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  color: #354b60;
+  font-weight: 900;
+  font-family: "Mulish", sans-serif;
+  box-shadow: 0px 0px 20px rgba(53, 75, 96, 0.2);
+}
+
+.leaflet-container .leaflet-control-zoom a:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.leaflet-container .leaflet-control-zoom a:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.c-kleurkaart {
+  width: 100%;
+  height: 90vh;
+}
+
+@media (max-width: 767.98px) {
+  .c-kleurkaart {
+    height: 50vh;
+  }
+}
+
+.c-kleurkaart .info {
+  padding: 6px 8px;
+  font: 14px/16px "Mulish", sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.c-kleurkaart .info.leaflet-control {
+  font-size: 2rem;
+}
+
+.c-kleurkaart .info.leaflet-control .info-panel {
+  padding-bottom: 0.5rem;
+}
+
+.c-kleurkaart .info.leaflet-control .info-panel--bottom {
+  padding-top: 0.3rem;
+}
+
+.c-kleurkaart .info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+@media (max-width: 767.98px) {
+  .c-kleurkaart .info.legend {
+    font-size: 12px;
+  }
+}
+
+.c-kleurkaart .leaflet-control-zoom {
+  box-shadow: none;
+}
+
+.c-kleurkaart .legend--background {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 767.98px) {
+  .c-kleurkaart .legend--background {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.c-kleurkaart .leaflet-control-attribution a {
+  font-size: 1.2rem;
+}
+
+.c-filter {
+  margin: 2rem;
+  z-index: 1000;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(53, 75, 96, 0.2);
+  width: calc(100% - 4rem);
+  color: #354b60;
+}
+
+@media (min-width: 576px) {
+  .c-filter {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 35rem;
+  }
+}
+
+.c-filter__header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c-filter__icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.c-filter__head-title {
+  margin: 0;
+  margin-left: 1rem;
+  font-weight: 900;
+}
+
+.c-filter__form-submit {
+  margin-top: 2rem;
+  width: 100%;
+  display: block;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+  background-color: #354b60;
+}
+
+.c-filter__form-items {
+  display: none;
+  margin-top: 1.5rem;
+}
+
+.c-filter__form-item {
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.c-filter__checkbox {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.c-filter__checkbox:checked ~ .c-filter__toggle::after {
+  opacity: 1;
+}
+
+.c-filter__checkbox:checked ~ .c-filter__dropdown {
+  display: block;
+}
+
+.c-filter__label {
+  margin: 0;
+  margin-left: 1rem;
+  display: inline-block;
+}
+
+.c-filter__toggle {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.3rem solid #354b60;
+  border-radius: 0.5rem;
+}
+
+.c-filter__toggle::after {
+  content: "";
+  width: 1.2rem;
+  height: 2rem;
+  background-image: url(../img/check.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 0.6rem;
+  left: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.c-filter__dropdown {
+  display: none;
+  font-size: 1.4rem;
+  color: #354b60;
+  margin-left: 3rem;
+}
+
+.c-filter__searchbar {
+  outline: none;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border: 0.3rem solid #354b60;
+  border-radius: 0.5rem;
+  width: 28rem;
+}
+
+@media (max-width: 767.98px) {
+  .c-filter__searchbar {
+    width: 25rem;
+  }
+}
+
+.c-filter__search-results {
+  display: flex;
+  flex-direction: column;
+  margin: 0.2rem 0.5rem;
+}
+
+.c-filter__search-result-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  color: #354b60;
+  text-decoration: none;
+  border: none;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.c-filter__search-result-item::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1rem;
+  background-image: url(../img/pijl-blauw.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translateY(50%);
+  margin-left: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.c-filter__search-result-item:hover {
+  text-decoration: none;
+  border: none;
+  color: #00B8B1;
+}
+
+.c-filter__search-result-item:hover::after {
+  opacity: 1;
+}
+
+.c-filter__search-result-item:hover::before {
+  text-decoration: none;
+  border: none;
+}
+
+.c-filter__range {
+  padding-top: 3rem;
+}
+
+.c-filter__range input[type="range"] {
+  position: absolute;
+  pointer-events: none;
+  -webkit-appearance: none;
+  z-index: 2;
+  height: 1rem;
+  width: 93%;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.c-filter__range--multirange-left {
+  right: 7%;
+}
+
+.c-filter__range--multirange-right {
+  left: 7%;
+}
+
+.c-filter__range input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 0;
+  border: 0 none;
+  background-color: red;
+  -webkit-appearance: none;
+}
+
+.c-filter__range--middle {
+  position: relative;
+  max-width: 28rem;
+}
+
+.c-filter__range--slider {
+  position: relative;
+  z-index: 1;
+  height: 3px;
+  margin: 0 15px;
+}
+
+.c-filter__range--slider__track {
+  position: absolute;
+  z-index: 1;
+  left: -1rem;
+  right: -1rem;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  background-color: #354b60;
+}
+
+.c-filter__range--slider__range {
+  position: absolute;
+  z-index: 2;
+  left: 25%;
+  right: 25%;
+  height: calc(100% + 2px);
+  top: -1px;
+  bottom: 0;
+  border-radius: 5px;
+  background-color: #00B8B1;
+}
+
+.c-filter__range--slider__thumb {
+  position: absolute;
+  z-index: 3;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #00B8B1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(0, 184, 177, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.c-filter__range--slider__thumb--left {
+  left: 25%;
+  transform: translate(-15px, -5px);
+}
+
+.c-filter__range--slider__thumb--left::after {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  content: attr(data-left);
+  color: #000000;
+  transform: translateX(-50%);
+}
+
+.c-filter__range--slider__thumb--right {
+  right: 25%;
+  transform: translate(15px, -5px);
+}
+
+.c-filter__range--slider__thumb--right::after {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  content: attr(data-right);
+  color: #000000;
+  transform: translateX(-50%);
+}
+
+.c-filter__range--slider__thumb.hover {
+  box-shadow: 0 0 0 10px rgba(0, 184, 177, 0.1);
+}
+
+.c-filter__range--slider__thumb.active {
+  box-shadow: 0 0 0 20px rgba(0, 184, 177, 0.2);
 }
 
 /*# sourceMappingURL=style.css.map */
