@@ -7,9 +7,9 @@ base theme: classy
 logo: logo.svg
 libraries:
   - covid/global-styling
-  - covid/navbar
-  - covid/grafieken
-  - covid/top
+  - covid/scripts
+  # - covid/grafieken
+  # - covid/top
 screenshot: screenshot.png
 regions:
   header: Header

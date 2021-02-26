@@ -776,9 +776,9 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  * Keep this code block at the end of this file to take full effect.
  */
 #
- if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-   include $app_root . '/' . $site_path . '/settings.local.php';
- }
+//  if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+//    include $app_root . '/' . $site_path . '/settings.local.php';
+//  }
 $databases['default']['default'] = array (
   'database' => 'ID319910_coivd19',
   'username' => 'ID319910_coivd19',
@@ -789,7 +789,7 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
-$settings['config_sync_directory'] = 'sites/default/files/config_TQD4HdXWiPRGF6cOkiVejz6p0FnnhPJHm0e6MWa1iPdbhwtyprVD6rm4N2bOoGxHh-zH3evnsQ/sync';
-$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
-$settings['cache']['bins']['render'] = 'cache.backend.null';
-$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null'; 
+// $settings['config_sync_directory'] = 'sites/default/files/config_TQD4HdXWiPRGF6cOkiVejz6p0FnnhPJHm0e6MWa1iPdbhwtyprVD6rm4N2bOoGxHh-zH3evnsQ/sync';
+// $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
+// $settings['cache']['bins']['render'] = 'cache.backend.null';
+// $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null'; 

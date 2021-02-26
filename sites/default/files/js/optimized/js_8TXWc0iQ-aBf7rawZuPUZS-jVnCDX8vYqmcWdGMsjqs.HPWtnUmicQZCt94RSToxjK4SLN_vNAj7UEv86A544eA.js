@@ -1,3 +1,4 @@
+/* Source and licensing information for the line(s) below can be found at http://localhost/corona-website/covid19/themes/covid/js/main.js. */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
@@ -34233,3 +34234,4 @@
   
   /******/ })()
   ;
+/* Source and licensing information for the above line(s) can be found at http://localhost/corona-website/covid19/themes/covid/js/main.js. */

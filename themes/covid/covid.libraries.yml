@@ -1,16 +1,16 @@
 global-styling:
   css:
     theme:
-      css/style.css: {}
-navbar:
+      dist/screen.min.css: {}
+scripts:
   js:
-      js/navbar.js: {}
+      dist/main.js: {}
   dependencies:
     - core/jquery
-grafieken:
-  js:
-    js/main.js: {}
-top:
-  js:
-    js/top.js: {}
+# grafieken:
+#   js:
+#     js/main.js: {}
+# top:
+#   js:
+#     js/top.js: {}
 
