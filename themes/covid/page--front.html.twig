@@ -8,9 +8,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head> #}
-  {# <body> #}
+  {# <body> ../covid19/themes/covid/data/geojson.json #}
 
   {% include directory ~  '/partials/header.html.twig' %}
+  <main class="container">
+  <h1>Covid-19 in kaart</h1>
+  </main>
   <div class="c-kaart">
       <div class="c-filter">
         <header class="c-filter__header">
@@ -207,28 +210,31 @@
        <p>Laatst bijgewerkt op <span class="js-today"></span></p>
       <div class="row">
         <div class="col-12 col-xl-4 d-flex justify-content-between flex-column">
+        <div>
           <h2 class="mb-1">Positieve testen</h2>
           <div class="pl-4 js-gevallen">
             <h3 class="js-cases"></h3>
             <p class="js-casestext"></p>
           </div>
- 
+        </div>
         </div>
         <div class="col-12 col-xl-4 d-flex justify-content-between flex-column">
+        <div>
           <h2 class="mb-1">Overlijdens</h2>
           <div class="pl-4 js-overlijdens">
             <h3 class="js-deaths"></h3>
             <p class="js-deathstext"></p>
           </div>
-
+        </div>
         </div>
         <div class="col-12 col-xl-4 d-flex justify-content-between flex-column">
+        <div>
           <h2 class="mb-1">Gezette vaccinaties</h2>
           <div class="pl-4 js-vaccinatie">
             <h3 class="js-vac"></h3>
             <p class="js-vactext"></p>
           </div>
- 
+        </div>
         </div>
       </div> {# end row #}
       <h2>Aantal besmettingen per dag wereldwijd</h2>
