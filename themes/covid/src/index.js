@@ -1,3 +1,3 @@
-import '../js/main';
 import '../js/navbar';
 import '../js/top';
+import '../js/main';
