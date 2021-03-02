@@ -1,6 +1,10 @@
 .c-navbar{
     width: 100%;
     background-color: $color-blauw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
 
     @media only screen and (max-width:375) {
         width: 105%;
@@ -20,7 +24,7 @@
         background-color: #fff;
         width: 17rem;
         position: absolute;
-        left: 0;
+        left: 10px;
         top: 0;
         box-shadow: 0 3px 6px #888888;
         z-index: 1000;
@@ -36,6 +40,7 @@
         img{
             padding: 1rem 2rem 2rem;
             width: 100%;
+            transform: translateY(-2px);
         }
     }
 
@@ -44,6 +49,7 @@
         display: flex;
         align-items: center;
         padding: 2rem;
+        margin-bottom: 0;
         @include media-breakpoint-down(sm){
             display: none;
             width: 100vw;
@@ -77,6 +83,7 @@
     //navbar li
     &__item{
         list-style: none;
+        padding: 1rem 0;
 
         @include media-breakpoint-down(sm){
             margin: 4rem 0 0rem;

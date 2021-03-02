@@ -12,5 +12,5 @@ scripts:
 #     js/main.js: {}
 # top:
 #   js:
-#     js/top.js: {}
+#     js/navbar.js: {}
 

@@ -1,0 +1,21 @@
+.wereldcirkel{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position:absolute;
+    animation: wereldcirkeldraaien 35s linear alternate infinite;
+    background-image: url(../img/wereldkaart.svg);
+    background-size: 600%;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    border: #354B60 4px solid;
+    display: inline-block;
+    margin-left: 2rem;
+}
+
+@keyframes wereldcirkeldraaien{
+    100% {
+        background-position: 100%;
+    }
+}
+

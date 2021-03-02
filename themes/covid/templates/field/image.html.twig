@@ -10,4 +10,9 @@
  * @see template_preprocess_image()
  */
 #}
-<img{{ attributes }} />
+<picture>
+	<source {{ attributes }} type="image/avif">
+	<source {{ attributes }} type="image/webp">
+	<img {{ attributes }}>
+</picture>
+{# <img{{ attributes }} /> #}

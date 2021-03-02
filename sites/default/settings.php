@@ -790,7 +790,7 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 $settings['config_sync_directory'] = 'sites/default/files/config_TQD4HdXWiPRGF6cOkiVejz6p0FnnhPJHm0e6MWa1iPdbhwtyprVD6rm4N2bOoGxHh-zH3evnsQ/sync';
-// $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
+$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 // $settings['cache']['bins']['render'] = 'cache.backend.null';
 // $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null'; 
-$config['system.logging']['error_level']='verbose';
+// $config['system.logging']['error_level']='verbose';

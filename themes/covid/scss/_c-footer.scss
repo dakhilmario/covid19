@@ -17,6 +17,11 @@
 
         &:hover{
             text-decoration: none;
+            
+        }
+    }
+    a{
+        &:hover{
             color: $color-secondary;
         }
     }
