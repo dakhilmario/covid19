@@ -5,12 +5,3 @@ global-styling:
 scripts:
   js:
       dist/main.js: {}
-  dependencies:
-    - core/jquery
-# grafieken:
-#   js:
-#     js/main.js: {}
-# top:
-#   js:
-#     js/navbar.js: {}
-

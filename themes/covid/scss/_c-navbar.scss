@@ -38,7 +38,7 @@
         }
 
         img{
-            padding: 1rem 2rem 2rem;
+
             width: 100%;
             transform: translateY(-2px);
         }
@@ -51,16 +51,20 @@
         padding: 2rem;
         margin-bottom: 0;
         @include media-breakpoint-down(sm){
-            display: none;
             width: 100vw;
-            height: 85%;
-            padding-top: 5rem;
+            height: 100vh;
             position: absolute;
             left: 0;
             background-color: $color-blauw;
-            margin: 8rem 0;
+            padding: 13rem 0 0 0;
             flex-direction: column;
             z-index: 100;
+            transform: translateY(-100vh);
+            transition: all 0.3s ease;
+        }
+
+        &--expand{
+            transform: translateY(0);
         }
 
         .is-active{
@@ -128,6 +132,7 @@
         display: none;
         cursor: pointer;
         padding: 3rem 0;
+        z-index: 10000;
 
         @include media-breakpoint-down(sm){
             display: inline-block;

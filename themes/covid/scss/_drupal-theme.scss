@@ -219,6 +219,7 @@ a:focus,
         background-color: $color-blauw;
         border-radius: 50%;
         cursor: pointer;
+        z-index: 18000;
 
         @media screen and (max-width: 390px){
           
@@ -228,7 +229,7 @@ a:focus,
         .fa-chevron-up{
           color: $color-white;
           width: 5.2rem;
-          padding: 9px 11px 13px;
+          padding: 9px 13px 13px;
 
           @include media-breakpoint-down(sm){
             width: 4rem;
@@ -239,4 +240,8 @@ a:focus,
 }
 .toolbar-loading #toolbar-administration{
   background-color: #000;
+}
+
+form#user-login-form {
+  margin-top: 13rem !important;
 }

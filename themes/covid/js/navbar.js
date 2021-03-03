@@ -1,26 +1,17 @@
-"use strict"
+"use strict";
+document.addEventListener("DOMContentLoaded", function () {
+  const hammenu = document.querySelector(".c-hammenu");
+  const nav = document.querySelector(".c-navbar__items");
 
-//als de user ingelogd is dan wordt de navbar naar beneden verschuift
-const drupalNav = function () {
-    if ($("nav").hasClass("toolbar-bar")) {
-        $(".c-navbar").css('top', "8rem")
-    }
-}
-
-$(document).ready(function () {
-    $(".c-hammenu").click(function () { 
-        $(this).toggleClass('js-transformed');
-        $(".c-navbar__items").slideToggle(350, "linear");
-        $(".c-navbar__items").css("display", "flex");
-        console.log("js done");
-    });
-
-    window.addEventListener("resize", () => {
-        $(".c-navbar__items").removeAttr('style');
-    });
-
-    drupalNav();
-
+  hammenu.addEventListener("click", function () {
+    hammenu.classList.toggle("js-transformed");
+    nav.classList.toggle("c-navbar__items--expand");
+  });
+    
+  if (document.querySelector(".toolbar-bar")) {
+    document.querySelector(".c-navbar").style.top = "7.8rem";
+  }
 });
+
 
 

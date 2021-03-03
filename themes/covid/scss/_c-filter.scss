@@ -125,10 +125,10 @@
     padding: 0.5rem 1rem;
     border: 0.3rem solid $color-blauw;
     border-radius: 0.5rem;
-    width: 28rem;
+    width: 23rem;
 
     @include media-breakpoint-down(sm) {
-      width: 23rem;
+      width: 20rem;
     }
   }
 
